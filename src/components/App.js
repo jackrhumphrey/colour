@@ -2,6 +2,8 @@ import * as React from "react";
 
 import "./App.css";
 
+import { Input } from "semantic-ui-react";
+
 function App() {
   const [colours, setColours] = React.useState({
     colour1: "#000000",
@@ -87,27 +89,29 @@ function App() {
     <div class="container">
       <div class="inner">
         <div class="picker">
-        <input
-          type="color"
-          value={colours.colour1}
-          id="colour1"
-          onChange={e => updateColour1(e)}
-        />{" "}
-        <input
-          type="color"
-          value={colours.colour2}
-          id="colour2"
-          onChange={e => updateColour2(e)}
-        />{" "}
-        <input
-          type="button"
-          value="Average"
-          onClick={e => average(colours.colour1, colours.colour2, 5)}
-        />{" "}
+          <Input
+            label="Colour 1"
+            type="color"
+            value={colours.colour1}
+            id="colour1"
+            onChange={e => updateColour1(e)}
+          />{" "}
+          <Input
+            label="Colour 2"
+            type="color"
+            value={colours.colour2}
+            id="colour2"
+            onChange={e => updateColour2(e)}
+          />{" "}
+          <input
+            type="button"
+            value="Average"
+            onClick={e => average(colours.colour1, colours.colour2, 5)}
+          />{" "}
         </div>
         <div class="swatches">
-        {colours.swatches.map((swatch, index) => <div key={index}> {swatch} </div>)}
-        {/* return <Image key={swatch.id} swatch={swatch} /> */}
+          {colours.swatches.map((swatch, index) => <div key={index}> {swatch} </div>)}
+          {/* return <Image key={swatch.id} swatch={swatch} /> */}
         </div>
       </div>
     </div>
