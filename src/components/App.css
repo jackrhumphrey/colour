@@ -1,4 +1,26 @@
-#container {
+
+.container {
+  height: 100vh;
+  height: -moz-available;
+  /* WebKit-based browsers will ignore this. */
+  height: -webkit-fill-available;
+  /* Mozilla-based browsers will ignore this. */
+  height: stretch;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #e0e0e0;
+}
+
+.inner {
+  margin: auto;
+  width: 100%;
   max-width: 960px;
-  margin: 100px auto;
+  padding: 50px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
 }
