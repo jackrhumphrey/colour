@@ -95,19 +95,19 @@ function App() {
             value={colours.colour1}
             id="colour1"
             onChange={e => updateColour1(e)}
-          />{" "}
+          />
           <Input
             label="Colour 2"
             type="color"
             value={colours.colour2}
             id="colour2"
             onChange={e => updateColour2(e)}
-          />{" "}
+          />
           <input
             type="button"
             value="Average"
             onClick={e => average(colours.colour1, colours.colour2, 5)}
-          />{" "}
+          />
         </div>
         <div class="swatches">
           {colours.swatches.map((swatch, index) => <div key={index}> {swatch} </div>)}
