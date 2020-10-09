@@ -1,3 +1,7 @@
   html, body, #root, #root>div {
     height: 100%;
   }
+
+  input[type="color"] {
+    padding:initial !important;
+  }
