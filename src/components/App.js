@@ -11,7 +11,7 @@ function App() {
     colour1: "#" + Math.floor(Math.random() * 16777215).toString(16),
     colour2: "#" + Math.floor(Math.random() * 16777215).toString(16)
   });
-  const [midpoints, setMidpoints] = React.useState(1);
+  const [midpoints, setMidpoints] = React.useState(3);
 
   const swatches = (c1, c2, midpoints) => {
     var c1red = parseInt(c1.substr(1, 2), 16);
@@ -44,8 +44,6 @@ function App() {
 
       var hex = "#" + redhex + greenhex + bluehex;
 
-      console.log("hex " + hex);
-
       swatchesList = [...swatchesList, hex];
     }
 
@@ -59,6 +57,12 @@ function App() {
   };
 
   const updateValues = React.useCallback((c1, c2, midpoints) => {
+    if (midpoints > 254) {
+      midpoints = 254;
+    }
+    if (midpoints < 1) {
+      midpoints = 1;
+    }
     setColours({
       colour1: c1,
       colour2: c2
@@ -68,38 +72,51 @@ function App() {
 
   return (
     <div className="container">
-      <div className="inner">
-        <div className="picker">
-          <Input
-            label="Colour 1"
-            type="color"
-            value={colours.colour1}
-            id="colour1"
-            onChange={e =>
-              updateValues(e.target.value, colours.colour2, midpoints)
-            }
-          />
-          <Input
-            label="Colour 2"
-            type="color"
-            value={colours.colour2}
-            id="colour2"
-            onChange={e =>
-              updateValues(colours.colour1, e.target.value, midpoints)
-            }
-          />
-          <Input
-            label="Midpoints"
-            type="number"
-            min="1"
-            value={midpoints}
-            onChange={e => {
-              updateValues(colours.colour1, colours.colour2, e.target.value);
-            }}
-          />
-        </div>
-        <div className="swatches">
-          {swatches(colours.colour1, colours.colour2, midpoints)}
+      <div className="margin">
+        <div className="inner">
+          <div className="picker">
+            <label>
+              Colour 1
+              <input
+                type="color"
+                id="colour1"
+                name="colour1"
+                value={colours.colour1}
+                onChange={e =>
+                  updateValues(e.target.value, colours.colour2, midpoints)
+                }
+              />
+            </label>
+            <br />
+            <label>
+              Colour 2
+              <input
+                type="color"
+                id="colour2"
+                name="colour2"
+                value={colours.colour2}
+                onChange={e =>
+                  updateValues(colours.colour1, e.target.value, midpoints)
+                }
+              />
+            </label>
+            <br />
+            <label for="midpoints">Midpoints</label>
+            <Input
+              type="number"
+              id="midpoints"
+              name="midpoints"
+              min="1"
+              max="254"
+              value={midpoints}
+              onChange={e =>
+                updateValues(colours.colour1, colours.colour2, e.target.value)
+              }
+            />
+          </div>
+          <div className="swatches">
+            {swatches(colours.colour1, colours.colour2, midpoints)}
+          </div>
         </div>
       </div>
     </div>

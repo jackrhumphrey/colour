@@ -1,0 +1,12 @@
+.swatch {
+  display: block;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.white {
+  color: #fff;
+}
+.black {
+  color: #000;
+}

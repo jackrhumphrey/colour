@@ -1,7 +1,10 @@
-  html, body, #root, #root>div {
-    height: 100%;
-  }
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+}
 
-  input[type="color"] {
-    padding:initial !important;
-  }
+input[type="color"] {
+  box-sizing: content-box;
+}
