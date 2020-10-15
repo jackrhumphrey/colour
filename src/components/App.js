@@ -75,8 +75,13 @@ function App() {
       <div className="margin">
         <div className="inner">
           <div className="picker">
-            <label>
-              Colour 1
+            <div className="pickerGrid">
+              <label
+                style={{ justifySelf: "end", alignSelf: "center" }}
+                for="colour1"
+              >
+                Colour 1
+              </label>
               <input
                 type="color"
                 id="colour1"
@@ -86,10 +91,12 @@ function App() {
                   updateValues(e.target.value, colours.colour2, midpoints)
                 }
               />
-            </label>
-            <br />
-            <label>
-              Colour 2
+              <label
+                style={{ justifySelf: "end", alignSelf: "center" }}
+                for="colour2"
+              >
+                Colour 2
+              </label>
               <input
                 type="color"
                 id="colour2"
@@ -99,20 +106,24 @@ function App() {
                   updateValues(colours.colour1, e.target.value, midpoints)
                 }
               />
-            </label>
-            <br />
-            <label for="midpoints">Midpoints</label>
-            <Input
-              type="number"
-              id="midpoints"
-              name="midpoints"
-              min="1"
-              max="254"
-              value={midpoints}
-              onChange={e =>
-                updateValues(colours.colour1, colours.colour2, e.target.value)
-              }
-            />
+              <label
+                style={{ justifySelf: "end", alignSelf: "center" }}
+                for="midpoints"
+              >
+                Midpoints
+              </label>
+              <Input
+                type="number"
+                id="midpoints"
+                name="midpoints"
+                min="1"
+                max="254"
+                value={midpoints}
+                onChange={e =>
+                  updateValues(colours.colour1, colours.colour2, e.target.value)
+                }
+              />
+            </div>
           </div>
           <div className="swatches">
             {swatches(colours.colour1, colours.colour2, midpoints)}

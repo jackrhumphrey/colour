@@ -24,14 +24,17 @@
   max-width: 960px;
   padding: 75px;
   display: flex;
+  gap: 75px;
 }
 
 .picker {
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
   flex: 0 0 auto;
-  width: auto;
+}
+
+.pickerGrid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
 }
 
 .swatches {
