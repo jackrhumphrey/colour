@@ -21,7 +21,7 @@
   background: #fff;
   min-height: calc(100vh - 200px);
   width: 100%;
-  max-width: 960px;
+  max-width: 1023px;
   padding: 75px;
   display: flex;
   gap: 75px;
@@ -35,8 +35,29 @@
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 1rem;
+  width: fit-content;
+  margin: auto;
 }
 
 .swatches {
   flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 1rem;
+  align-content: start;
+}
+
+@media only screen and (max-width: 1023px) {
+  .margin {
+    padding: 0px;
+  }
+  .container {
+    background: #fff;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .inner {
+    flex-direction: column;
+  }
 }
