@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./Swatch.css";
+import "./Swatch.less";
 
 function Swatch({ colour }) {
   return (

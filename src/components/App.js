@@ -18,6 +18,10 @@ function App() {
     colour1: "#" + pad(Math.floor(Math.random() * 16777215).toString(16)),
     colour2: "#" + pad(Math.floor(Math.random() * 16777215).toString(16))
   });
+  const [textInput, setTextInput] = React.useState({
+    colour1: colours.colour1,
+    colour2: colours.colour2
+  });
   const [midpoints, setMidpoints] = React.useState(3);
 
   const swatches = React.useCallback((c1, c2, midpoints) => {
@@ -63,19 +67,46 @@ function App() {
     );
   }, []);
 
-  const updateValues = React.useCallback((c1, c2, midpoints) => {
-    if (midpoints > 254) {
-      midpoints = 254;
-    }
-    if (midpoints < 1) {
-      midpoints = 1;
-    }
-    setColours({
-      colour1: c1,
-      colour2: c2
-    });
-    setMidpoints(midpoints);
-  }, []);
+  const textInputHandler = React.useCallback(
+    (key, c) => {
+      if ((c.length > 0 && c.slice(0, 1) !== "#") || c.length < 1) {
+        c = "#" + c;
+      }
+      if (c.length > 7) {
+        c = c.slice(0, 7);
+      }
+      setTextInput({ ...textInput, [key]: c });
+      const s = new Option().style;
+      s.color = c;
+      if (s.color !== "" && c.length === 7) {
+        setColours({ ...colours, [key]: c });
+      } else if (s.color !== "" && c.length === 4) {
+        c =
+          c.slice(0, 2) +
+          c.slice(1, 2) +
+          c.slice(2, 3) +
+          c.slice(2, 3) +
+          c.slice(3, 4) +
+          c.slice(3, 4);
+        setColours({ ...colours, [key]: c });
+      }
+    },
+    [colours, textInput]
+  );
+
+  const updateColour = React.useCallback(
+    (key, c) => {
+      setColours({
+        ...colours,
+        [key]: c
+      });
+      setTextInput({
+        ...textInput,
+        [key]: c
+      });
+    },
+    [colours, textInput]
+  );
 
   return (
     <div className="container">
@@ -91,9 +122,15 @@ function App() {
                 id="colour1"
                 name="colour1"
                 value={colours.colour1}
-                onChange={e =>
-                  updateValues(e.target.value, colours.colour2, midpoints)
-                }
+                onChange={e => updateColour("colour1", e.target.value)}
+              />
+              <Input
+                value={textInput.colour1}
+                maxLength="7"
+                style={{ width: "6.5em" }}
+                onChange={e => {
+                  textInputHandler("colour1", e.target.value);
+                }}
               />
               <label className="label" htmlFor="colour2">
                 Colour 2
@@ -103,24 +140,36 @@ function App() {
                 id="colour2"
                 name="colour2"
                 value={colours.colour2}
-                onChange={e =>
-                  updateValues(colours.colour1, e.target.value, midpoints)
-                }
+                onChange={e => updateColour("colour2", e.target.value)}
+              />
+              <Input
+                value={textInput.colour2}
+                maxLength="7"
+                style={{ width: "6.5em" }}
+                onChange={e => textInputHandler("colour2", e.target.value)}
               />
               <label className="label" htmlFor="midpoints">
                 Midpoints
               </label>
-              <Input
-                type="number"
-                id="midpoints"
-                name="midpoints"
-                min="1"
-                max="254"
-                value={midpoints}
-                onChange={e =>
-                  updateValues(colours.colour1, colours.colour2, e.target.value)
-                }
-              />
+              <div style={{ gridColumn: "2 / 4" }}>
+                <Input
+                  type="number"
+                  id="midpoints"
+                  name="midpoints"
+                  min="1"
+                  max="254"
+                  value={midpoints}
+                  onChange={e => {
+                    if (e.target.value > 254) {
+                      e.target.value = 254;
+                    }
+                    if (e.target.value < 1) {
+                      e.target.value = 1;
+                    }
+                    setMidpoints(e.target.value);
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div className="swatches">

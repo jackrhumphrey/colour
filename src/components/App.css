@@ -33,15 +33,15 @@
 
 .pickerGrid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   grid-gap: 1rem;
   width: fit-content;
   margin: auto;
+  align-items: center;
 }
 
 .label {
   justify-self: end;
-  align-self: center;
 }
 
 .swatches {
