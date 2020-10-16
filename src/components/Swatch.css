@@ -4,8 +4,10 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  font-size:4vh;
-  font-family:Arial;
+}
+.text {
+  font-size: calc(100px/3);
+  font-family: Arial;
 }
 .white {
   color: #fff;

@@ -7,13 +7,20 @@ import Swatch from "./Swatch";
 import { Input } from "semantic-ui-react";
 
 function App() {
+  const pad = React.useCallback(number => {
+    while (number.length < 6) {
+      number = "0" + number;
+    }
+    return number;
+  }, []);
+
   const [colours, setColours] = React.useState({
-    colour1: "#" + Math.floor(Math.random() * 16777215).toString(16),
-    colour2: "#" + Math.floor(Math.random() * 16777215).toString(16)
+    colour1: "#" + pad(Math.floor(Math.random() * 16777215).toString(16)),
+    colour2: "#" + pad(Math.floor(Math.random() * 16777215).toString(16))
   });
   const [midpoints, setMidpoints] = React.useState(3);
 
-  const swatches = (c1, c2, midpoints) => {
+  const swatches = React.useCallback((c1, c2, midpoints) => {
     var c1red = parseInt(c1.substr(1, 2), 16);
     var c2red = parseInt(c2.substr(1, 2), 16);
     var c1green = parseInt(c1.substr(3, 2), 16);
@@ -54,7 +61,7 @@ function App() {
         ))}
       </>
     );
-  };
+  }, []);
 
   const updateValues = React.useCallback((c1, c2, midpoints) => {
     if (midpoints > 254) {
@@ -76,10 +83,7 @@ function App() {
         <div className="inner">
           <div className="picker">
             <div className="pickerGrid">
-              <label
-                style={{ justifySelf: "end", alignSelf: "center" }}
-                for="colour1"
-              >
+              <label className="label" htmlFor="colour1">
                 Colour 1
               </label>
               <input
@@ -91,10 +95,7 @@ function App() {
                   updateValues(e.target.value, colours.colour2, midpoints)
                 }
               />
-              <label
-                style={{ justifySelf: "end", alignSelf: "center" }}
-                for="colour2"
-              >
+              <label className="label" htmlFor="colour2">
                 Colour 2
               </label>
               <input
@@ -106,10 +107,7 @@ function App() {
                   updateValues(colours.colour1, e.target.value, midpoints)
                 }
               />
-              <label
-                style={{ justifySelf: "end", alignSelf: "center" }}
-                for="midpoints"
-              >
+              <label className="label" htmlFor="midpoints">
                 Midpoints
               </label>
               <Input
