@@ -127,7 +127,7 @@ function App() {
               <Input
                 value={textInput.colour1}
                 maxLength="7"
-                style={{ width: "6.5em" }}
+                style={{ width: "7em" }}
                 onChange={e => {
                   textInputHandler("colour1", e.target.value);
                 }}
@@ -145,7 +145,7 @@ function App() {
               <Input
                 value={textInput.colour2}
                 maxLength="7"
-                style={{ width: "6.5em" }}
+                style={{ width: "7em" }}
                 onChange={e => textInputHandler("colour2", e.target.value)}
               />
               <label className="label" htmlFor="midpoints">
