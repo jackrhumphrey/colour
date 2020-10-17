@@ -75,7 +75,7 @@ function App() {
       if (c.length > 7) {
         c = c.slice(0, 7);
       }
-      setTextInput({ ...textInput, [key]: c });
+      setTextInput({ ...textInput, [key]: c.toLowerCase() });
       const s = new Option().style;
       s.color = c;
       if (s.color !== "" && c.length === 7) {
