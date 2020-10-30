@@ -109,18 +109,16 @@ function App() {
     [colours, textInput]
   );
 
-  const updateMidpoints = React.useCallback(
-    (n) => {
-      setTextMidpoints(n);
-      if (n > 254) {
-        n = 254;
-      }
-      if (n < 1) {
-return;      }
-      setMidpoints(n);
-},
-    []
-  );
+  const updateMidpoints = React.useCallback(n => {
+    setTextMidpoints(n);
+    if (n > 254) {
+      n = 254;
+    }
+    if (n < 1) {
+      return;
+    }
+    setMidpoints(n);
+  }, []);
 
   return (
     <div className="container">
