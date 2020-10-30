@@ -23,6 +23,7 @@ function App() {
     colour2: colours.colour2
   });
   const [midpoints, setMidpoints] = React.useState(3);
+  const [textMidpoints, setTextMidpoints] = React.useState(midpoints);
 
   const swatches = React.useCallback((c1, c2, midpoints) => {
     var c1red = parseInt(c1.substr(1, 2), 16);
@@ -108,6 +109,19 @@ function App() {
     [colours, textInput]
   );
 
+  const updateMidpoints = React.useCallback(
+    (n) => {
+      setTextMidpoints(n);
+      if (n > 254) {
+        n = 254;
+      }
+      if (n < 1) {
+return;      }
+      setMidpoints(n);
+},
+    []
+  );
+
   return (
     <div className="container">
       <div className="margin">
@@ -158,16 +172,9 @@ function App() {
                   name="midpoints"
                   min="1"
                   max="254"
-                  value={midpoints}
-                  onChange={e => {
-                    if (e.target.value > 254) {
-                      e.target.value = 254;
-                    }
-                    if (e.target.value < 1) {
-                      e.target.value = 1;
-                    }
-                    setMidpoints(e.target.value);
-                  }}
+                  value={textMidpoints}
+                  onChange={e => updateMidpoints(e.target.value)}
+                  onBlur={() => setTextMidpoints(midpoints)}
                 />
               </div>
             </div>
