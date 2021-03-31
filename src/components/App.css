@@ -39,6 +39,16 @@
   align-items: center;
 }
 
+.midpoints {
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
+  align-items: center;
+  width: fit-content;
+  grid-column: 1 / 4;
+}
+
 .label {
   justify-self: end;
 }

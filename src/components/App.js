@@ -160,10 +160,10 @@ function App() {
                 style={{ width: "7em" }}
                 onChange={e => textInputHandler("colour2", e.target.value)}
               />
-              <label className="label" htmlFor="midpoints">
-                Midpoints
+              <div className="midpoints">
+                <label className="label" htmlFor="midpoints">
+                  Midpoints
               </label>
-              <div style={{ gridColumn: "2 / 4" }}>
                 <Input
                   type="number"
                   id="midpoints"
