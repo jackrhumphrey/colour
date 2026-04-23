@@ -21,12 +21,12 @@ body {
   display: flex;
   gap: 75px;
   padding: 75px;
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 768px) {
     gap: 50px;
     padding: 50px;
     flex-direction: column-reverse;
   }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 360px) {
     gap: 25px;
     padding: 25px;
   }
@@ -37,10 +37,10 @@ body {
   display: grid;
   grid-template-columns: auto auto;
   gap: 1em;
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 768px) {
     padding: 0;
   }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 360px) {
     grid-template-columns: 1fr;
     gap: 0.5em;
   }
@@ -54,7 +54,7 @@ body {
 
 .controls__label {
   padding-top: 3px;
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 360px) {
     padding-top: 0.5em;
   }
 }

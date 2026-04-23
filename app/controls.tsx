@@ -59,7 +59,7 @@ export default function Controls({
   return (
     <div className="controls">
       <div className="controls__grid">
-        <label className="controls__label" htmlFor="colour1">
+        <label className="controls__label" htmlFor="colour1" id="colour1-label">
           Colour 1
         </label>
         <div className="controls__input-group">
@@ -73,6 +73,9 @@ export default function Controls({
             }}
           />
           <input
+            id="colour1-text"
+            name="colour1-text"
+            aria-labelledby="colour1-label"
             value={colourInputs[0]}
             maxLength={7}
             style={{ width: "6em" }}
@@ -84,7 +87,7 @@ export default function Controls({
             }}
           />
         </div>
-        <label className="controls__label" htmlFor="colour2">
+        <label className="controls__label" htmlFor="colour2" id="colour2-label">
           Colour 2
         </label>
         <div className="controls__input-group">
@@ -98,6 +101,9 @@ export default function Controls({
             }}
           />
           <input
+            id="colour2-text"
+            name="colour2-text"
+            aria-labelledby="colour2-label"
             value={colourInputs[1]}
             maxLength={7}
             style={{ width: "6em" }}
@@ -128,7 +134,7 @@ export default function Controls({
           />
         </div>
         <label className="controls__label" htmlFor="color-space">
-          Color space
+          Colour&nbsp;space
         </label>
         <div style={{ padding: "1px 0" }}>
           <select
@@ -156,9 +162,7 @@ export default function Controls({
           className="controls__label"
           htmlFor="interpolation-method"
         >
-          Interpolation
-          <br />
-          method
+          Interpolation method
         </label>
         <div
           style={{
