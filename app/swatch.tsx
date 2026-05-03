@@ -16,10 +16,12 @@ export default function Swatch({ color, label, ref }: SwatchProps) {
       const white = new Color("#fff");
       const black = new Color("#000");
 
-      const contrastWhite = bgColor.contrast(white, "WCAG21");
-      const contrastBlack = bgColor.contrast(black, "WCAG21");
+      const contrastWhite = bgColor.contrast(white, "APCA");
+      const contrastBlack = bgColor.contrast(black, "APCA");
 
-      return contrastWhite > contrastBlack ? "#fff" : "#000";
+      return Math.abs(contrastWhite) > Math.abs(contrastBlack)
+        ? "#fff"
+        : "#000";
     } catch {
       return undefined;
     }
